@@ -1,16 +1,13 @@
 package com.fx.controller;
 
+import com.fx.dto.Ingredient;
 import com.fx.dto.Ingredients;
-import com.fx.dto.Ingridient;
 import com.fx.dto.Order;
 import com.fx.dto.StreetFood;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +15,13 @@ import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
-@SessionAttributes("StreetFood")
-@RequestMapping("design")
+@SessionAttributes({"order"})
+@RequestMapping("/design")
 public class DesignController {
 
     @GetMapping
     public String design() {
-        return "design";
+        return "designForm";
     }
 
     @ModelAttribute("order")
@@ -39,28 +36,38 @@ public class DesignController {
 
     @ModelAttribute
     public void addIngridientListToModel(Model model) {
-        List<Ingridient> ingredientList = Arrays.asList(
-            new Ingridient("CHC", "chicken", Ingredients.CHICKEN),
-            new Ingridient("CHF", "fried chicken", Ingredients.CHICKEN),
+        List<Ingredient> ingredientList = Arrays.asList(
+            new Ingredient("CHC", "chicken", Ingredients.CHICKEN),
+            new Ingredient("CHF", "fried chicken", Ingredients.CHICKEN),
 
-            new Ingridient("PIT", "pita", Ingredients.PITA),
-            new Ingridient("PIC", "corn pita", Ingredients.PITA),
+            new Ingredient("PIT", "pita", Ingredients.PITA),
+            new Ingredient("PIC", "corn pita", Ingredients.PITA),
 
-            new Ingridient("CUC", "cucumber", Ingredients.VEGETABLE),
-            new Ingridient("TOM", "tomato", Ingredients.VEGETABLE),
+            new Ingredient("CUC", "cucumber", Ingredients.VEGETABLE),
+            new Ingredient("TOM", "tomato", Ingredients.VEGETABLE),
 
-            new Ingridient("CHE", "cheese", Ingredients.CHEESE),
+            new Ingredient("CHE", "cheese", Ingredients.CHEESE),
 
-            new Ingridient("SAU", "sauce", Ingredients.SAUCE),
-            new Ingridient("SAH", "hot sauce", Ingredients.SAUCE)
+            new Ingredient("SAU", "sauce", Ingredients.SAUCE),
+            new Ingredient("SAH", "hot sauce", Ingredients.SAUCE)
         );
 
+        //Amazing non repository mock...
         Arrays.stream(Ingredients.values())
             .forEach(val -> {
-                List<Ingridient> filtered = ingredientList.stream()
+                List<Ingredient> filtered = ingredientList.stream()
                     .filter(ing -> ing.getIngredient().equals(val))
-                    .collect(Collectors.toList());  // Важно!
+                    .collect(Collectors.toList());
                 model.addAttribute(val.toString().toLowerCase(), filtered);
             });
+    }
+
+    @PostMapping
+    public String processStreetFood(StreetFood streetFood, Order order) {
+        order.addStreetFood(streetFood);
+
+        log.info("Processing street food: {}", streetFood);
+
+        return "redirect:/orders/current";
     }
 }

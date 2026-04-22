@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Design page</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Make your order</h1>
+<form method="POST" th:object="${order}" th:action="@{/orders}">
+    <h3>Your street food in this order</h3>
+    <a th:href="@{/design}">Design another food</a>
+    <div>
+        <ul>
+            <li th:each="food : ${order.streetFoodList}">
+                <span th:text="${food.name}">taco name</span>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <strong>Delivery name</strong>
+        <input type="text" th:field="*{deliveryName}"/>
+    </div>
+
+    <div>
+        <strong>Delivery address</strong>
+        <input type="text" th:field="*{deliveryAddress}"/>
+    </div>
+
+    <div>
+        <strong>CVV</strong>
+        <input type="text" th:field="*{ccCVV}"/>
+    </div>
+
+    <button type="submit">Submit your street food</button>
+
+</form>
+</body>
+</html>
