@@ -1,9 +1,12 @@
 package com.fx.controller;
 
 import com.fx.dto.Order;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @Slf4j
@@ -18,7 +21,12 @@ public class OrderController {
     }
 
     @PostMapping
-    public String orderFormProcess(@ModelAttribute Order order){
+    public String orderFormProcess(@ModelAttribute @Valid Order order, Errors errors, SessionStatus sessionStatus) { //Аfter EACH validation need errors object...
+        if (errors.hasErrors()) {
+            log.warn("Try not valid data in ORDER {}", errors);
+            return "orderForm";
+        }
+        sessionStatus.setComplete();
         log.info(order.toString());
         return "redirect:/";
     }

@@ -4,9 +4,11 @@ import com.fx.dto.Ingredient;
 import com.fx.dto.Ingredients;
 import com.fx.dto.Order;
 import com.fx.dto.StreetFood;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -63,7 +65,11 @@ public class DesignController {
     }
 
     @PostMapping
-    public String processStreetFood(StreetFood streetFood, Order order) {
+    public String processStreetFood(@Valid StreetFood streetFood, Errors errors, Order order) { //Аfter EACH validation need errors object...
+        if (errors.hasErrors()) {
+            log.warn("Try not valid data in DESIGN {}", errors);
+            return "designForm";
+        }
         order.addStreetFood(streetFood);
 
         log.info("Processing street food: {}", streetFood);

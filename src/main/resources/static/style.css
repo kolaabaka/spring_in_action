@@ -1,0 +1,4 @@
+.validationError {
+  color: var(--error-color, #dc3545);
+  font-style: italic;
+}

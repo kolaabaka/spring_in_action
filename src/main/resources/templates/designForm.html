@@ -3,10 +3,16 @@
 <head>
     <title>Design page</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
 <h1>Make your street food</h1>
 <form method="POST" th:object="${streetFood}" th:action="@{/design}">
+
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredient')}"
+          th:errors="*{ingredient}">Name error</span>
+
     <div class="ingredient-group" id="chicken">
         <h3>Design your chicken</h3>
         <div th:each="ingredient : ${chicken}">
@@ -55,6 +61,9 @@
    <div>
        <h3>Name your street food</h3>
        <input type="text" th:field="*{name}"/>
+       <span class="validationError"
+             th:if="${#fields.hasErrors('name')}"
+             th:errors="*{name}">Name error</span>
        <br/>
        <button type="submit">Submit your street food</button>
    </div>

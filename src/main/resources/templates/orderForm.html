@@ -3,6 +3,7 @@
 <head>
     <title>Design page</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
 <h1>Make your order</h1>
@@ -20,16 +21,25 @@
     <div>
         <strong>Delivery name</strong>
         <input type="text" th:field="*{deliveryName}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryName')}"
+              th:errors="*{deliveryName}">Name error</span>
     </div>
 
     <div>
         <strong>Delivery address</strong>
         <input type="text" th:field="*{deliveryAddress}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryAddress')}"
+              th:errors="*{deliveryAddress}">Name error</span>
     </div>
 
     <div>
         <strong>CVV</strong>
         <input type="text" th:field="*{ccCVV}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccCVV')}"
+              th:errors="*{ccCVV}">Name error</span>
     </div>
 
     <button type="submit">Submit your street food</button>
