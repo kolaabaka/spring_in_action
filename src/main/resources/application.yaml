@@ -1,3 +1,5 @@
 spring:
   application:
     name: spring_in_action
+
+  thymeleaf: false #template caching, don`t need in developing
