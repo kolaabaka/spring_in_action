@@ -3,3 +3,13 @@ spring:
     name: spring_in_action
 
   thymeleaf: false #template caching, don`t need in developing
+  datasource:
+    url: jdbc:h2:mem:streetFood
+    username: sa
+    password:
+    name: streetFood
+    generate-unique-name: false
+
+  jpa:
+    hibernate:
+      ddl-auto: create

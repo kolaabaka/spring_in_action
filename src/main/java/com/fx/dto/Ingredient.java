@@ -1,11 +1,21 @@
 package com.fx.dto;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "ingredient")
 public class Ingredient {
 
-    private final String id;
-    private final String name;
-    private final Ingredients ingredient;
+    @Id
+    private String id;
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Ingredients ingredient;
 }

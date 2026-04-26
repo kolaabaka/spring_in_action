@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@SpringBootTest(classes = SpringInActionApplication.class) //use full context
 //@AutoConfigureMockMvc
 
-@WebMvcTest(HomeController.class) //use only components required in test
+@WebMvcTest(DesignController.class) //use only components required in test
 public class HomeControllerTest {
 
     @Autowired
@@ -23,9 +23,9 @@ public class HomeControllerTest {
 
     @Test
     public void homePageDefaultTest() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/design"))
             .andExpect(status().isOk())
-            .andExpect(view().name("home"))
-            .andExpect(content().string(containsString("HOME PAGE")));
+            .andExpect(view().name("designForm"))
+            .andExpect(content().string(containsString("Submit your")));
     }
 }
