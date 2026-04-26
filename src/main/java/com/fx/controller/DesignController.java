@@ -1,17 +1,18 @@
 package com.fx.controller;
 
 import com.fx.dto.Ingredient;
-import com.fx.dto.Ingredients;
 import com.fx.dto.Order;
 import com.fx.dto.StreetFood;
+import com.fx.repository.IngredienRepository;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @SessionAttributes({"order"})
 @RequestMapping("/design")
+@AllArgsConstructor
 public class DesignController {
+
+    private final IngredienRepository ingredienRepository;
 
     @GetMapping
     public String design() {
@@ -38,30 +42,14 @@ public class DesignController {
 
     @ModelAttribute
     public void addIngridientListToModel(Model model) {
-        List<Ingredient> ingredientList = Arrays.asList(
-            new Ingredient("CHC", "chicken", Ingredients.CHICKEN),
-            new Ingredient("CHF", "fried chicken", Ingredients.CHICKEN),
+        List<Ingredient> allIngredients = new ArrayList<>();
+        ingredienRepository.findAll().forEach(allIngredients::add);
 
-            new Ingredient("PIT", "pita", Ingredients.PITA),
-            new Ingredient("PIC", "corn pita", Ingredients.PITA),
-
-            new Ingredient("CUC", "cucumber", Ingredients.VEGETABLE),
-            new Ingredient("TOM", "tomato", Ingredients.VEGETABLE),
-
-            new Ingredient("CHE", "cheese", Ingredients.CHEESE),
-
-            new Ingredient("SAU", "sauce", Ingredients.SAUCE),
-            new Ingredient("SAH", "hot sauce", Ingredients.SAUCE)
-        );
-
-        //Amazing non repository mock...
-        Arrays.stream(Ingredients.values())
-            .forEach(val -> {
-                List<Ingredient> filtered = ingredientList.stream()
-                    .filter(ing -> ing.getIngredient().equals(val))
-                    .collect(Collectors.toList());
-                model.addAttribute(val.toString().toLowerCase(), filtered);
-            });
+        allIngredients.stream()
+            .collect(Collectors.groupingBy(Ingredient::getIngredient))
+            .forEach((type, list) ->
+                model.addAttribute(type.toString().toLowerCase(), list)
+            );
     }
 
     @PostMapping
