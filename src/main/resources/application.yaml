@@ -13,3 +13,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: comments

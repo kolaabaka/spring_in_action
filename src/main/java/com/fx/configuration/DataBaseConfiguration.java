@@ -1,8 +1,8 @@
 package com.fx.configuration;
 
-import com.fx.dto.Ingredient;
-import com.fx.dto.Ingredients;
-import com.fx.repository.IngredienRepository;
+import com.fx.dto.jpa.Ingredient;
+import com.fx.dto.jpa.Ingredients;
+import com.fx.repository.jpa.IngredienRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
