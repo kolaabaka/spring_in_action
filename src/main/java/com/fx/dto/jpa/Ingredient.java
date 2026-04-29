@@ -1,4 +1,4 @@
-package com.fx.dto;
+package com.fx.dto.jpa;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

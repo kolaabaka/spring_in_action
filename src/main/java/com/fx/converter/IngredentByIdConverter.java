@@ -1,7 +1,7 @@
 package com.fx.converter;
 
-import com.fx.dto.Ingredient;
-import com.fx.repository.IngredienRepository;
+import com.fx.dto.jpa.Ingredient;
+import com.fx.repository.jpa.IngredienRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

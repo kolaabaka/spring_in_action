@@ -1,4 +1,4 @@
-package com.fx.dto;
+package com.fx.dto.jpa;
 
 public enum Ingredients {
     CHICKEN,

@@ -1,9 +1,9 @@
 package com.fx.controller;
 
-import com.fx.dto.Ingredient;
-import com.fx.dto.Order;
-import com.fx.dto.StreetFood;
-import com.fx.repository.IngredienRepository;
+import com.fx.dto.jpa.Ingredient;
+import com.fx.dto.jpa.Order;
+import com.fx.dto.jpa.StreetFood;
+import com.fx.repository.jpa.IngredienRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

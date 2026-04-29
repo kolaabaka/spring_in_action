@@ -1,7 +1,7 @@
 package com.fx.controller;
 
-import com.fx.dto.Order;
-import com.fx.repository.OrderRepository;
+import com.fx.dto.jpa.Order;
+import com.fx.repository.jpa.OrderRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
