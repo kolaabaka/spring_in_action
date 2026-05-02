@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="UTF-8" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<h1>HOME PAGE</h1>
-</body>
-<a th:href="@{/design}">Design your <strong>STREET FOOD</strong></a>
+    <h1>HOME PAGE</h1>
 
-<img th:src="@{/images/HomePageLogo.jpg}">
+    <a th:href="@{/design}">Design your <strong>STREET FOOD</strong></a>
+
+    <br>
+
+    <img th:src="@{/images/HomePageLogo.jpg}">
+
+    <br>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
 </html>
