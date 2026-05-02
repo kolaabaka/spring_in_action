@@ -6,67 +6,71 @@
     <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
 <body>
-<h1>Make your street food</h1>
-<form method="POST" th:object="${streetFood}" th:action="@{/design}">
+    <h1>Make your street food</h1>
+    <form method="POST" th:object="${streetFood}" th:action="@{/design}">
 
-    <span class="validationError"
-          th:if="${#fields.hasErrors('ingredient')}"
-          th:errors="*{ingredient}">Name error</span>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ingredient')}"
+              th:errors="*{ingredient}">Name error</span>
 
-    <div class="ingredient-group" id="chicken">
-        <h3>Design your chicken</h3>
-        <div th:each="ingredient : ${chicken}">
-           <!-- th:field it`s field in response model in streetFood-->
-           <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
-           <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+        <div class="ingredient-group" id="chicken">
+            <h3>Design your chicken</h3>
+            <div th:each="ingredient : ${chicken}">
+               <!-- th:field it`s field in response model in streetFood-->
+               <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
+               <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+           </div>
        </div>
-   </div>
 
-   <div class="ingredient-group" id="pita">
-       <h3>Design your pita</h3>
-       <div th:each="ingredient : ${pita}">
-           <!-- th:field it`s field in response model in streetFood-->
-           <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
-           <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+       <div class="ingredient-group" id="pita">
+           <h3>Design your pita</h3>
+           <div th:each="ingredient : ${pita}">
+               <!-- th:field it`s field in response model in streetFood-->
+               <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
+               <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+           </div>
        </div>
-   </div>
 
-   <div class="ingredient-group" id="vegetable">
-       <h3>Design your vegetable</h3>
-       <div th:each="ingredient : ${vegetable}">
-           <!-- th:field it`s field in response model in streetFood-->
-           <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
-           <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+       <div class="ingredient-group" id="vegetable">
+           <h3>Design your vegetable</h3>
+           <div th:each="ingredient : ${vegetable}">
+               <!-- th:field it`s field in response model in streetFood-->
+               <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
+               <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+           </div>
        </div>
-   </div>
 
-   <div class="ingredient-group" id="cheese">
-       <h3>Design your cheese</h3>
-       <div th:each="ingredient : ${cheese}">
-           <!-- th:field it`s field in response model in streetFood-->
-           <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
-           <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+       <div class="ingredient-group" id="cheese">
+           <h3>Design your cheese</h3>
+           <div th:each="ingredient : ${cheese}">
+               <!-- th:field it`s field in response model in streetFood-->
+               <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
+               <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+           </div>
        </div>
-   </div>
 
-   <div class="ingredient-group" id="sauce">
-       <h3>Design your sauce</h3>
-       <div th:each="ingredient : ${sauce}">
-           <!-- th:field it`s field in response model in streetFood-->
-           <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
-           <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+       <div class="ingredient-group" id="sauce">
+           <h3>Design your sauce</h3>
+           <div th:each="ingredient : ${sauce}">
+               <!-- th:field it`s field in response model in streetFood-->
+               <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}"/>
+               <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+           </div>
        </div>
-   </div>
 
-   <div>
-       <h3>Name your street food</h3>
-       <input type="text" th:field="*{name}"/>
-       <span class="validationError"
-             th:if="${#fields.hasErrors('name')}"
-             th:errors="*{name}">Name error</span>
-       <br/>
-       <button type="submit">Submit your street food</button>
-   </div>
-</form>
+       <div>
+           <h3>Name your street food</h3>
+           <input type="text" th:field="*{name}"/>
+           <span class="validationError"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}">Name error</span>
+           <br/>
+           <button type="submit">Submit your street food</button>
+       </div>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </form>
 </body>
 </html>
