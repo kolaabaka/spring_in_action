@@ -6,11 +6,13 @@ import com.fx.repository.jpa.IngredienRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class DataBaseConfiguration {
 
     @Bean //like post construct but for application context, work after all beans configurations
+    @Profile("dev") // or could use @Profile("!dev")
     public ApplicationRunner dataLoader(IngredienRepository ingredienRepository) {
         return args -> {
             ingredienRepository.save(new Ingredient("CHC", "chicken", Ingredients.CHICKEN));
