@@ -21,5 +21,9 @@ spring:
       database: comments
 
 logging:
+  logging:
+    file:
+      path: /var/logs/
+      file: StreetFood.log
   level:
     root: DEBUG

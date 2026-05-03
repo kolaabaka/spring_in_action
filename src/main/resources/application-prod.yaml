@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: spring_in_action
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: comments
+
+logging:
+  file:
+    path: /var/logs/
+    file: StreetFood.log
+  level:
+    root: WARN
+    org.springframework.security: DEBUG
