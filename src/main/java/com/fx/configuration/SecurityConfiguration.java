@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.sql.PreparedStatement;
+
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -38,8 +40,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/rest/**", "/integration/**") //need disable for post, put, delete, patch for unauthorized requests
+            )
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/registration").permitAll()
+                .requestMatchers("/rest", "/rest/**").permitAll()
+                .requestMatchers("/integration", "/integration/street_food").permitAll()
+                .requestMatchers("/login", "/registration", "/error").permitAll()
                 .requestMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
             )
@@ -48,13 +55,13 @@ public class SecurityConfiguration {
                 .defaultSuccessUrl("/", true)
                 .permitAll()
             )
-            .logout(logout ->
-                logout
-                    .permitAll()
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/login?logout")
-                    .deleteCookies("JSESSIONID")
-                    .logoutUrl("/logout"));
+            .logout(logout -> logout
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("JSESSIONID")
+                .logoutUrl("/logout")
+                .permitAll()
+            );
         return http.build();
     }
 
