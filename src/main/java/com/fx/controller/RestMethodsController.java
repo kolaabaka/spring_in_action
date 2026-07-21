@@ -1,7 +1,7 @@
 package com.fx.controller;
 
 import com.fx.dto.jpa.Ingredient;
-import com.fx.repository.jpa.IngredienRepository;
+import com.fx.repository.jpa.IngredientRepository;
 import com.fx.repository.jpa.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestMethodsController {
 
     private final OrderRepository orderRepository;
-    private final IngredienRepository ingredienRepository;
+    private final IngredientRepository ingredientRepository;
 
     @DeleteMapping("/order/{orderId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -24,7 +24,7 @@ public class RestMethodsController {
 
     @GetMapping(value = "/ingredient/{ingredientId}")
     public ResponseEntity<Ingredient> ingredientById(@PathVariable("ingredientId") String ingredientId) {
-        var ingredient = ingredienRepository.findById(ingredientId);
+        var ingredient = ingredientRepository.findById(ingredientId);
         if(ingredient.isPresent()) {
             return new ResponseEntity(ingredient.get(), HttpStatus.OK);
         }

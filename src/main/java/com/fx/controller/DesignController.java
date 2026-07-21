@@ -3,7 +3,7 @@ package com.fx.controller;
 import com.fx.dto.jpa.Ingredient;
 import com.fx.dto.jpa.Order;
 import com.fx.dto.jpa.StreetFood;
-import com.fx.repository.jpa.IngredienRepository;
+import com.fx.repository.jpa.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class DesignController {
 
-    private final IngredienRepository ingredienRepository;
+    private final IngredientRepository ingredientRepository;
 
     @GetMapping
     public String design() {
@@ -43,7 +43,7 @@ public class DesignController {
     @ModelAttribute
     public void addIngridientListToModel(Model model) {
         List<Ingredient> allIngredients = new ArrayList<>();
-        ingredienRepository.findAll().forEach(allIngredients::add);
+        ingredientRepository.findAll().forEach(allIngredients::add);
 
         allIngredients.stream()
             .collect(Collectors.groupingBy(Ingredient::getIngredient))
