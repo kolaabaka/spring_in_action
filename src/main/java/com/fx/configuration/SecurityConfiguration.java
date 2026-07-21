@@ -48,6 +48,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/integration", "/integration/street_food").permitAll()
                 .requestMatchers("/login", "/registration", "/error").permitAll()
                 .requestMatchers("/static/**").permitAll()
+                .requestMatchers("/test/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

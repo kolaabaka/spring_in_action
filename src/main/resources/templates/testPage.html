@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test page</title>
+</head>
+<body>
+    <h1>TEST PAGE</h1>
+    <button id="testButton">Test button</button>
+
+
+    <script>
+        const btn = document.getElementById('testButton');
+
+        btn.addEventListener(
+            'click', () => {
+                console.log('Pressed');
+            }
+        );
+    </script>
+</body>
+</html>
