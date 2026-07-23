@@ -8,7 +8,8 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 
-//ATTENTION default using TCP, u can switch to WEBSOCKET for browser support
+//ATTENTION default using TCP, u can switch to WEBSOCKET for browser support and use same
+// server(tomcat, netty) like http controllers(less vulnerability, less ports), moreover u need WEBSOCKET if u use firewall
 @Controller
 public class RSocketController {
 
