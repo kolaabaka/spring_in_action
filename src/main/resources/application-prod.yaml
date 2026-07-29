@@ -1,4 +1,5 @@
 spring:
+  lifecycle.timeout-per-shutdown-ohase: 20s #default 30s
   application:
     name: spring_in_action
 
@@ -30,6 +31,9 @@ management:
       exposure:
         include: "*" #all metrics
         exclude: threaddump, heapdump #exluded metrics, default empty
+
+server:
+  shutdown: graceful
 
 logging:
   file:
