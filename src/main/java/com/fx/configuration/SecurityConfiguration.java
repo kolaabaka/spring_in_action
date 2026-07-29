@@ -44,6 +44,7 @@ public class SecurityConfiguration {
                 .ignoringRequestMatchers("/rest/**", "/integration/**") //need disable for post, put, delete, patch for unauthorized requests
             )
             .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/manage", "/manage/**").permitAll()
                 .requestMatchers("/rest", "/rest/**").permitAll()
                 .requestMatchers("/integration", "/integration/street_food").permitAll()
                 .requestMatchers("/login", "/registration", "/error").permitAll()
