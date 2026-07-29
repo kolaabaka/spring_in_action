@@ -23,6 +23,14 @@ spring:
       port: 27017
       database: comments
 
+management:
+  endpoints:
+    web:
+      base-path: /manage #default path start with actuator/**
+      exposure:
+        include: "*" #all metrics
+        exclude: threaddump, heapdump #exluded metrics, default empty
+
 logging:
   file:
     path: /var/logs/
