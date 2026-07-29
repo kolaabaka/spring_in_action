@@ -1,4 +1,5 @@
 spring:
+  lifecycle.timeout-per-shutdown-ohase: 20s #default 30s
   application:
     name: spring_in_action
 
@@ -40,6 +41,9 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+server:
+  shutdown: graceful
 
 logging:
   level:
